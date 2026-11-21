@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fahad Abdullah · Android Developer · Resume & Projects</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- GLOBAL RESET & VARIABLES ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    :root {
+      --bg: #f4f7fc;
+      --surface: #ffffff;
+      --surface-glass: rgba(255, 255, 255, 0.75);
+      --text-primary: #1a1d28;
+      --text-secondary: #555b73;
+      --border-light: #e6eaf2;
+      --accent: #4f6ef7;
+      --accent-soft: #e8edff;
+      --accent-glow: #a5b8ff;
+      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 20px 35px -10px rgba(0, 0, 0, 0.08), 0 10px 15px -6px rgba(0, 0, 0, 0.03);
+      --shadow-lg: 0 30px 50px -15px rgba(79, 110, 247, 0.15);
+      --radius-card: 28px;
+      --radius-element: 16px;
+      --transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0e1018;
+      --surface: #1a1d28;
+      --surface-glass: rgba(26, 29, 40, 0.85);
+      --text-primary: #f0f2f8;
+      --text-secondary: #a0a5b8;
+      --border-light: #2a2e3e;
+      --accent: #6d8bff;
+      --accent-soft: #262d4a;
+      --accent-glow: #3a4a80;
+      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 20px 35px -10px rgba(0, 0, 0, 0.6);
+      --shadow-lg: 0 30px 50px -15px rgba(109, 139, 255, 0.15);
+    }
+
+    body {
+      background: var(--bg);
+      background-image: radial-gradient(circle at 20% 10%, rgba(79, 110, 247, 0.06) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(109, 139, 255, 0.06) 0%, transparent 50%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      transition: background-color 0.3s ease, color 0.25s ease;
+      line-height: 1.6;
+      padding: 2.5rem 2rem;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+
+    .resume-container {
+      max-width: 1200px;
+      width: 100%;
+      position: relative;
+    }
+
+    /* ---------- THEME TOGGLE ---------- */
+    .theme-toggle {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1.8rem;
+    }
+
+    .theme-btn {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      color: var(--text-secondary);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(8px);
+    }
+
+    .theme-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ---------- PROFILE HEADER ---------- */
+    .profile-header {
+      background: var(--surface-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: var(--radius-card);
+      padding: 2.5rem 2.5rem 2rem 2.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+      margin-bottom: 2.5rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-header::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+      opacity: 0.6;
+      pointer-events: none;
+      border-radius: 50%;
+    }
+
+    .profile-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+      border-radius: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: var(--accent);
+      border: 3px solid var(--accent);
+      box-shadow: 0 15px 25px -10px var(--accent-glow);
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .avatar:hover {
+      transform: scale(1.02) rotate(2deg);
+    }
+
+    .name-title h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .name-title .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0.45rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      border: 1px solid var(--accent);
+      box-shadow: 0 4px 10px -4px var(--accent-glow);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 2.5rem;
+      margin-top: 2rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid var(--border-light);
+      font-size: 0.98rem;
+      color: var(--text-secondary);
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-info i {
+      color: var(--accent);
+      width: 1.5rem;
+      margin-right: 0.3rem;
+      font-size: 1rem;
+    }
+
+    .contact-info a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .contact-info a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    /* ---------- MAIN GRID ---------- */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 2.5rem;
+    }
+
+    /* ---------- SIDEBAR CARDS ---------- */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-light);
+      padding: 2rem 1.8rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      margin-bottom: 2.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-glow);
+    }
+
+    .card:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-title i {
+      color: var(--accent);
+      font-size: 1.3rem;
+      background: var(--accent-soft);
+      padding: 0.5rem;
+      border-radius: 14px;
+      width: 2.4rem;
+      text-align: center;
+    }
+
+    .skill-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.98rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px dashed var(--border-light);
+    }
+
+    .skill-item:last-child {
+      border-bottom: none;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .skill-level {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+    }
+
+    .tag {
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: var(--transition);
+    }
+
+    .tag:hover {
+      border-color: var(--accent);
+      background: var(--surface);
+    }
+
+    /* ---------- PROJECTS SECTION (REPLACED APK SECTION) ---------- */
+    .projects-section {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      padding: 2rem 1.8rem;
+      margin-bottom: 2.2rem;
+      transition: var(--transition);
+    }
+
+    .projects-section:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .projects-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.4rem 1.6rem;
+      background: var(--bg);
+      border-radius: var(--radius-element);
+      border: 1px solid var(--border-light);
+      transition: var(--transition);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, var(--accent-soft), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      background: var(--surface);
+    }
+
+    .project-card:hover::after {
+      opacity: 0.1;
+    }
+
+    .project-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--accent-soft);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-icon {
+      background: var(--accent);
+      color: white;
+      transform: scale(1.05) rotate(5deg);
+    }
+
+    .project-details {
+      flex: 1;
+    }
+
+    .project-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      color: var(--text-primary);
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: 0.2rem;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .project-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .project-meta i {
+      color: var(--accent);
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.55rem 1.4rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      white-space: nowrap;
+      border: 1px solid var(--accent);
+    }
+
+    .github-link i {
+      font-size: 1rem;
+    }
+
+    .github-link:hover {
+      background: var(--text-primary);
+      border-color: var(--text-primary);
+      color: var(--bg);
+      transform: scale(1.02);
+      text-decoration: none;
+    }
+
+    /* ---------- EXPERIENCE / EDUCATION ---------- */
+    .exp-item {
+      margin-bottom: 1.8rem;
+    }
+
+    .exp-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .exp-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    .exp-company {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .exp-date {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      background: var(--bg);
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      border: 1px solid var(--border-light);
+      font-weight: 500;
+    }
+
+    .exp-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin-top: 0.4rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-light);
+      margin: 1.5rem 0;
+    }
+
+    /* ---------- FOOTER NOTE ---------- */
+    .hosting-note {
+      background: var(--surface-glass);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-element);
+      border: 1px solid var(--border-light);
+      padding: 1.2rem 1.8rem;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: var(--text-secondary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hosting-note i {
+      color: var(--accent);
+      margin-right: 0.5rem;
+    }
+
+    .hosting-note a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hosting-note a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
+      .main-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .profile-top {
+        flex-direction: column;
+        text-align: center;
+      }
+      .contact-info {
+        justify-content: center;
+      }
+      .name-title h1 {
+        font-size: 2.2rem;
+      }
+      .avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .project-card {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .project-card .github-link {
+        width: 100%;
+        justify-content: center;
+      }
+      .profile-header {
+        padding: 1.8rem;
+      }
+      .card, .projects-section {
+        padding: 1.5rem;
+      }
+      .contact-info {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: flex-start;
+      }
+      .hosting-note {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .name-title h1 {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="resume-container">
+    <!-- theme toggle -->
+    <div class="theme-toggle">
+      <button class="theme-btn" id="themeToggle" aria-label="switch theme">
+        <i class="fas fa-moon" id="themeIcon"></i>
+      </button>
+    </div>
+
+    <!-- PROFILE HEADER -->
+    <header class="profile-header">
+      <div class="profile-top">
+        <div class="avatar">
+          <i class="fas fa-user-astronaut"></i>
+        </div>
+        <div class="name-title">
+          <h1>Fahad Abdullah</h1>
+          <div class="badge"><i class="fas fa-code"></i> Android Developer · Kotlin & Jetpack Compose</div>
+        </div>
+      </div>
+      <div class="contact-info">
+        <span><i class="fas fa-envelope"></i> <a href="mailto:skytuch90@gmail.com">skytuch90@gmail.com</a></span>
+        <span><i class="fas fa-map-marker-alt"></i> Ghouri Town, Islamabad, Pakistan</span>
+        <span><i class="fas fa-phone-alt"></i> +92 314 1985768</span>
+        <span><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/fahad-abdullah-5a99543b0" target="_blank">fahad-abdullah-5a99543b0</a></span>
+        <span><i class="fab fa-github"></i> <a href="https://github.com/mynameisfahadandiamaprogramer" target="_blank">mynameisfahadandiamaprogramer</a></span>
+      </div>
+    </header>
+
+    <!-- MAIN GRID -->
+    <div class="main-grid">
+      <!-- LEFT COLUMN -->
+      <aside>
+        <!-- About -->
+        <div class="card">
+          <div class="card-title"><i class="fas fa-user"></i> About</div>
+          <p style="font-size: 0.98rem; color: var(--text-secondary);">
+            Android developer specialized in <strong>Kotlin</strong> and <strong>Jetpack Compose</strong>.
+            Currently pursuing BSCS at COMSATS University Islamabad. I build clean, modern Android
+            applications and share all source code on GitHub. Passionate about beautiful UI and
+            performant code.
+          </p>
+        </div>
+
+        <!-- Skills -->
+        <div class="card">
+          <div class="card-title"><i class="fas fa-cog"></i> Skills</div>
+          <div class="skill-item">
+            <span class="skill-name">Kotlin & Jetpack Compose</span>
+            <span class="skill-level">Advanced</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Android SDK / Java</span>
+            <span class="skill-level">Advanced</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">MVVM / Clean Architecture</span>
+            <span class="skill-level">Intermediate</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Firebase & REST APIs</span>
+            <span class="skill-level">Intermediate</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Git & GitHub</span>
+            <span class="skill-level">Intermediate</span>
+          </div>
+          <div class="tag-list">
+            <span class="tag">Compose UI</span>
+            <span class="tag">Material 3</span>
+            <span class="tag">Room DB</span>
+            <span class="tag">Retrofit</span>
+            <span class="tag">Coroutines</span>
+            <span class="tag">Hilt</span>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="card">
+          <div class="card-title"><i class="fas fa-language"></i> Languages</div>
+          <div class="skill-item">
+            <span class="skill-name">English</span>
+            <span class="skill-level">Fluent</span>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Urdu</span>
+            <span class="skill-level">Native</span>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="card">
+          <div class="card-title"><i class="fas fa-graduation-cap"></i> Education</div>
+          <div class="exp-item">
+            <div class="exp-title">
+              <span>BS Computer Science (BSCS)</span>
+              <span class="exp-date">2021 – 2025</span>
+            </div>
+            <div class="exp-company">COMSATS University Islamabad</div>
+            <div class="exp-desc">Focus on mobile development and software engineering.</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RIGHT COLUMN: PROJECTS (GITHUB LINKS) + EXPERIENCE -->
+      <main>
+        <!-- PROJECTS SECTION (replaced APK downloads) -->
+        <section class="projects-section">
+          <div class="card-title" style="margin-bottom: 1.5rem;">
+            <i class="fab fa-github"></i> My Projects (source code on GitHub)
+          </div>
+          <div class="projects-grid">
+
+            <!-- Project 1: i_app -->
+            <a href="https://github.com/mynameisfahadandiamaprogramer/i_app" target="_blank" class="project-card">
+              <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
+              <div class="project-details">
+                <div class="project-name">i_app <span class="tag" style="font-size:0.7rem;">Kotlin · Compose</span></div>
+                <div class="project-desc">Modern Android application built with Jetpack Compose.</div>
+                <div class="project-meta">
+                  <span><i class="fas fa-code"></i> Kotlin</span>
+                  <span><i class="fas fa-layer-group"></i> Jetpack Compose</span>
+                </div>
+              </div>
+              <span class="github-link"><i class="fab fa-github"></i> Source Code</span>
+            </a>
+
+            <!-- Project 2: image_and_videos -->
+            <a href="https://github.com/mynameisfahadandiamaprogramer/image_and_videos" target="_blank" class="project-card">
+              <div class="project-icon"><i class="fas fa-photo-video"></i></div>
+              <div class="project-details">
+                <div class="project-name">Image & Videos <span class="tag" style="font-size:0.7rem;">Kotlin · Compose</span></div>
+                <div class="project-desc">Media viewer app for images and videos with modern UI.</div>
+                <div class="project-meta">
+                  <span><i class="fas fa-code"></i> Kotlin</span>
+                  <span><i class="fas fa-layer-group"></i> Jetpack Compose</span>
+                </div>
+              </div>
+              <span class="github-link"><i class="fab fa-github"></i> Source Code</span>
+            </a>
+
+            <!-- Project 3: music_payer -->
+            <a href="https://github.com/mynameisfahadandiamaprogramer/music_payer" target="_blank" class="project-card">
+              <div class="project-icon"><i class="fas fa-music"></i></div>
+              <div class="project-details">
+                <div class="project-name">Music Player <span class="tag" style="font-size:0.7rem;">Kotlin · Compose</span></div>
+                <div class="project-desc">A sleek music player app with Jetpack Compose and Media3.</div>
+                <div class="project-meta">
+                  <span><i class="fas fa-code"></i> Kotlin</span>
+                  <span><i class="fas fa-layer-group"></i> Jetpack Compose</span>
+                </div>
+              </div>
+              <span class="github-link"><i class="fab fa-github"></i> Source Code</span>
+            </a>
+
+          </div>
+          <div style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-secondary); background: var(--bg); padding: 0.9rem 1.3rem; border-radius: 40px; border: 1px solid var(--border-light);">
+            <i class="fas fa-link" style="color: var(--accent);"></i> All projects are open‑source and hosted on GitHub · 
+            <a href="https://github.com/mynameisfahadandiamaprogramer" style="color: var(--accent); text-decoration: none; font-weight: 600;" target="_blank">mynameisfahadandiamaprogramer</a>
+          </div>
+        </section>
+
+        <!-- EXPERIENCE / PROJECTS -->
+        <section class="card" style="margin-bottom: 2.2rem;">
+          <div class="card-title"><i class="fas fa-briefcase"></i> Experience</div>
+          <div class="exp-item">
+            <div class="exp-title">
+              <span>Android Developer (Freelance)</span>
+              <span class="exp-date">2023 – present</span>
+            </div>
+            <div class="exp-company">Self-employed</div>
+            <div class="exp-desc">Built and published multiple Android applications using Kotlin and Jetpack Compose. Focus on modern UI, offline-first architecture, and clean code.</div>
+          </div>
+          <hr>
+          <div class="exp-item">
+            <div class="exp-title">
+              <span>Open Source Contributor</span>
+              <span class="exp-date">2023</span>
+            </div>
+            <div class="exp-company">GitHub</div>
+            <div class="exp-desc">Actively sharing Android projects and contributing to community libraries.</div>
+          </div>
+          <hr>
+          <div class="exp-item">
+            <div class="exp-title">
+              <span>Web Resume & Portfolio</span>
+              <span class="exp-date">2024</span>
+            </div>
+            <div class="exp-company">GitHub Pages</div>
+            <div class="exp-desc">This resume is fully static and hosted for free. All projects are linked directly to source code.</div>
+          </div>
+        </section>
+
+        <!-- DOWNLOAD NOTE -->
+        <div class="hosting-note">
+          <span><i class="fas fa-cloud-upload-alt"></i> All project source code available on GitHub. Click any project card to view the repository.</span>
+          <a href="https://github.com/mynameisfahadandiamaprogramer" target="_blank"><i class="fab fa-github"></i> view all repositories</a>
+        </div>
+      </main>
+    </div>
+
+    <!-- tiny footer -->
+    <div style="text-align: center; margin-top: 2.5rem; font-size: 0.85rem; opacity: 0.6; color: var(--text-secondary);">
+      <i class="fas fa-code"></i> Fahad Abdullah · Android Developer · built with HTML, CSS, JS
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    (function() {
+      // Theme toggle
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      const htmlElement = document.documentElement;
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        htmlElement.setAttribute('data-theme', 'dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      } else {
+        htmlElement.setAttribute('data-theme', 'light');
+      }
+
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+          htmlElement.setAttribute('data-theme', 'light');
+          themeIcon.classList.remove('fa-sun');
+          themeIcon.classList.add('fa-moon');
+          localStorage.setItem('theme', 'light');
+        } else {
+          htmlElement.setAttribute('data-theme', 'dark');
+          themeIcon.classList.remove('fa-moon');
+          themeIcon.classList.add('fa-sun');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+
+      // Project card click effect (optional - just for console)
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          // If you want to track clicks, uncomment:
+          // console.log('Project clicked:', card.querySelector('.project-name').innerText);
+        });
+      });
+
+      console.log('Resume ready — GitHub project showcase active.');
+    })();
+  </script>
+</body>
+</html>
